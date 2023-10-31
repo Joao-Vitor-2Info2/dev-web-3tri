@@ -64,30 +64,80 @@ const movies = ref([{
     genre: 'supla'
 },])
 
+const currentMovie = ref(0)
+
+const divMovies = ref()
+
+function changeMovie(index) {
+    if (currentMovie.value >= 0 && index == 1) {
+        currentMovie.value += index;
+    } else if (currentMovie.value >= movies.value.length - 1) {
+        currentMovie.value == 0
+    }
+    console.log(currentMovie.value)
+    divMovies.value[currentMovie.value].scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'center'
+    });
+}
+
 </script>
 
 
 <template>
     <div class="catalog">
+        <h2> Filmes - Populares</h2>
         <div class="movies">
-            <div class="movie" v-for="movie, index of movies" :key="index">
-                <img :src="movie.img" alt="">
-                <p>{{ movie.title }}</p>
-                <p>{{ movie.genre }}</p>
+            <div class="nav" @click="changeMovie(-1)"> --- </div>
+
+            <div class="movieRow">
+                <div class="movie" v-for="movie, index of movies" :key="index" ref="divMovies">
+                    <img :src="movie.img" alt="">
+                    <p>{{ movie.title }}</p>
+                    <p>{{ movie.genre }}</p>
+                </div>
             </div>
+
+            <div class="nav" @click="changeMovie(1)"> --- </div>
+        </div>
+
+        <h2> Séries - Populares</h2>
+        <div class="movies">
+            <div class="nav" @click="changeMovie(-1)"> --- </div>
+
+            <div class="movieRow">
+                <div class="movie" v-for="movie, index of movies" :key="index" ref="divMovies">
+                    <img :src="movie.img" alt="">
+                    <p>{{ movie.title }}</p>
+                    <p>{{ movie.genre }}</p>
+                </div>
+            </div>
+
+            <div class="nav" @click="changeMovie(1)"> --- </div>
         </div>
     </div>
 </template>
 
 <style scoped>
-.movies {
+.movieRow {
     display: flex;
-    flex-wrap: wrap;
+    overflow-x: scroll;
     margin-top: 5%;
     gap: 2%;
     row-gap: 20px;
+    width: 95%;
+    margin: auto;
+}
+
+.movies {
+    display: flex;
     align-items: center;
-    justify-content: center;
+}
+
+.nav {
+    user-select: none;
+    cursor: pointer;
 }
 
 .movie {

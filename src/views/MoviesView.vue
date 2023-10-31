@@ -1,7 +1,7 @@
 <script setup>
 
 import MovieHeader from '../components/MovieHeader.vue'
-import HomeCatalog from '../components/HomeCatalog.vue';
+import MovieCatalog from '../components/MovieCatalog.vue';
 
 </script>
 
@@ -9,7 +9,7 @@ import HomeCatalog from '../components/HomeCatalog.vue';
     
     <main>
         <movie-header />
-        <home-catalog />
+        <movie-catalog />
     </main>
 
 </template>

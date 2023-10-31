@@ -9,11 +9,18 @@ const generos = ref(['drama', 'comédia', 'terror', 'romance'])
 <template>
     
     <header>
-        <div class="logo">aaaa</div>
-        <div class="generos">
-            <button class="genero" v-for="genero, index in generos" :key="index">
-                 {{ genero }} 
-            </button>
+        <div class="row1">
+            <button>Filmes</button>
+            <button>Séries</button>
+        </div>
+        <hr>
+        <div class="row2">
+            <div class="logo">aaaa</div>
+            <div class="generos">
+                <button class="genero" v-for="genero, index in generos" :key="index">
+                     {{ genero }}
+                </button>
+            </div>
         </div>
     </header>
 
@@ -26,6 +33,8 @@ header {
     text-align: center;
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    row-gap: 10px;
 }
 
 .logo {
@@ -33,10 +42,26 @@ header {
     left: 1%;
 }
 
+.row2 {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.row1 {
+    display: flex;
+    gap: 1%;
+    justify-content: center;
+}
+
 .generos {
     user-select: none;
     display: flex;
     gap: 5%;
+}
+
+hr {
+    width: 100%;
 }
 
 </style>
