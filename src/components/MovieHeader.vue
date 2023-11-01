@@ -1,8 +1,8 @@
 <script setup>
 
-import {ref } from 'vue';
+import {ref} from 'vue';
 
-const generos = ref(['drama', 'comédia', 'terror', 'romance'])
+import { RouterLink } from 'vue-router';
 
 </script>
 
@@ -10,17 +10,15 @@ const generos = ref(['drama', 'comédia', 'terror', 'romance'])
     
     <header>
         <div class="row1">
-            <button>Filmes</button>
-            <button>Séries</button>
+            <RouterLink to="/filmes"><button>Filmes</button></RouterLink>
+            <RouterLink to="/series"><button>Séries</button></RouterLink>
         </div>
         <hr>
         <div class="row2">
-            <div class="logo">aaaa</div>
-            <div class="generos">
-                <button class="genero" v-for="genero, index in generos" :key="index">
-                     {{ genero }}
-                </button>
-            </div>
+            <RouterLink to="/">
+                <div class="logo">aaaa</div>
+            </RouterLink>
+            
         </div>
     </header>
 
@@ -35,6 +33,10 @@ header {
     justify-content: center;
     flex-direction: column;
     row-gap: 10px;
+}
+
+a {
+    color: black;
 }
 
 .logo {

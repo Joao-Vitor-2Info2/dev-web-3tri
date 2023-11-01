@@ -64,22 +64,38 @@ const movies = ref([{
     genre: 'supla'
 },])
 
-const currentMovie = ref(0)
+const currentMovie1 = ref(1)
+const currentMovie2 = ref(1)
 
-const divMovies = ref()
+const divMovies1 = ref();
+const divMovies2 = ref();
 
-function changeMovie(index) {
-    if (currentMovie.value >= 0 && index == 1) {
-        currentMovie.value += index;
-    } else if (currentMovie.value >= movies.value.length - 1) {
-        currentMovie.value == 0
+function changeMovie(index, row) {
+
+    if (row == 1) {
+
+        if (currentMovie1.value == 1 && index == -1 || currentMovie1.value == movies.value.length - 2) {
+            currentMovie1.value = 1
+        } else {
+            currentMovie1.value += index
+        }
+        divMovies1.value[currentMovie1.value].scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest',
+            inline: 'center'
+        });
+    } else {
+        if (currentMovie2.value == 1 && index == -1 || currentMovie2.value == movies.value.length - 2) {
+            currentMovie2.value = 1
+        } else {
+            currentMovie2.value += index
+        }
+        divMovies2.value[currentMovie2.value].scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest',
+            inline: 'center'
+        });
     }
-    console.log(currentMovie.value)
-    divMovies.value[currentMovie.value].scrollIntoView({
-        behavior: 'smooth',
-        block: 'nearest',
-        inline: 'center'
-    });
 }
 
 </script>
@@ -89,32 +105,32 @@ function changeMovie(index) {
     <div class="catalog">
         <h2> Filmes - Populares</h2>
         <div class="movies">
-            <div class="nav" @click="changeMovie(-1)"> --- </div>
+            <div class="nav" @click="changeMovie(-1, 1)"> --- </div>
 
             <div class="movieRow">
-                <div class="movie" v-for="movie, index of movies" :key="index" ref="divMovies">
+                <div class="movie" v-for="movie, index of movies" :key="index" ref="divMovies1">
                     <img :src="movie.img" alt="">
                     <p>{{ movie.title }}</p>
                     <p>{{ movie.genre }}</p>
                 </div>
             </div>
 
-            <div class="nav" @click="changeMovie(1)"> --- </div>
+            <div class="nav" @click="changeMovie(1, 1)"> --- </div>
         </div>
 
         <h2> Séries - Populares</h2>
         <div class="movies">
-            <div class="nav" @click="changeMovie(-1)"> --- </div>
+            <div class="nav" @click="changeMovie(-1, 2)"> --- </div>
 
             <div class="movieRow">
-                <div class="movie" v-for="movie, index of movies" :key="index" ref="divMovies">
+                <div class="movie" v-for="movie, index of movies" :key="index" ref="divMovies2">
                     <img :src="movie.img" alt="">
                     <p>{{ movie.title }}</p>
                     <p>{{ movie.genre }}</p>
                 </div>
             </div>
 
-            <div class="nav" @click="changeMovie(1)"> --- </div>
+            <div class="nav" @click="changeMovie(1, 2)"> --- </div>
         </div>
     </div>
 </template>

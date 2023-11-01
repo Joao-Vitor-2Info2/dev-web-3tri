@@ -64,18 +64,11 @@ const movies = ref([{
     genre: 'supla'
 },])
 
-const generos = ref(['drama', 'comédia', 'terror', 'romance'])
-
 </script>
 
 
 <template>
     <div class="catalog">
-        <div class="generos">
-                <button class="genero" v-for="genero, index in generos" :key="index">
-                     {{ genero }}
-                </button>
-            </div>
         <div class="movies">
             <div class="movie" v-for="movie, index of movies" :key="index">
                 <img :src="movie.img" alt="">
