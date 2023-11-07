@@ -1,31 +1,25 @@
 <script setup>
 
-import {ref} from 'vue';
+import { ref } from 'vue';
 
 import { RouterLink } from 'vue-router';
 
 </script>
 
 <template>
-    
     <header>
         <div class="row1">
             <RouterLink to="/filmes"><button>Filmes</button></RouterLink>
             <RouterLink to="/series"><button>Séries</button></RouterLink>
-        </div>
-        <hr>
-        <div class="row2">
             <RouterLink to="/">
                 <div class="logo">aaaa</div>
             </RouterLink>
-            
         </div>
+        <hr>
     </header>
-
 </template>
 
 <style scoped >
-
 header {
     width: 100%;
     text-align: center;
@@ -65,5 +59,4 @@ a {
 hr {
     width: 100%;
 }
-
 </style>
