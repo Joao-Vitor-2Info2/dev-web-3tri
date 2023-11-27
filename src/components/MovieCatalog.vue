@@ -1,103 +1,87 @@
 <script setup>
 
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import { useMovieStore } from '../stores/movie';
 
-const generos = ref(['drama', 'comédia', 'terror', 'romance'])
+const movieStore = useMovieStore()
 
-const movies = ref([{
-    img: 'https://imgs.search.brave.com/0Segl4FI95GW5t9Q--Hz1CW5Au-dArvdnp1K91Xg2Ms/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9jb250/ZXVkby5pbWd1b2wu/Y29tLmJyL2MvcGFy/Y2Vpcm9zL2ZjLzIw/MjEvMTEvMjIvc3Vw/bGEtZGl2dWxnYWNh/by0xNjM3NTUwMjA1/MDMzX3YyXzMwMHgy/MjUuanBn',
-    title: 'supla',
-    genre: 1
-}, {
-    img: 'https://imgs.search.brave.com/0Segl4FI95GW5t9Q--Hz1CW5Au-dArvdnp1K91Xg2Ms/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9jb250/ZXVkby5pbWd1b2wu/Y29tLmJyL2MvcGFy/Y2Vpcm9zL2ZjLzIw/MjEvMTEvMjIvc3Vw/bGEtZGl2dWxnYWNh/by0xNjM3NTUwMjA1/MDMzX3YyXzMwMHgy/MjUuanBn',
-    title: 'supla',
-    genre: 2
-}, {
-    img: 'https://imgs.search.brave.com/0Segl4FI95GW5t9Q--Hz1CW5Au-dArvdnp1K91Xg2Ms/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9jb250/ZXVkby5pbWd1b2wu/Y29tLmJyL2MvcGFy/Y2Vpcm9zL2ZjLzIw/MjEvMTEvMjIvc3Vw/bGEtZGl2dWxnYWNh/by0xNjM3NTUwMjA1/MDMzX3YyXzMwMHgy/MjUuanBn',
-    title: 'supla',
-    genre: 3
-}, {
-    img: 'https://imgs.search.brave.com/0Segl4FI95GW5t9Q--Hz1CW5Au-dArvdnp1K91Xg2Ms/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9jb250/ZXVkby5pbWd1b2wu/Y29tLmJyL2MvcGFy/Y2Vpcm9zL2ZjLzIw/MjEvMTEvMjIvc3Vw/bGEtZGl2dWxnYWNh/by0xNjM3NTUwMjA1/MDMzX3YyXzMwMHgy/MjUuanBn',
-    title: 'supla',
-    genre: 0
-}, {
-    img: 'https://imgs.search.brave.com/0Segl4FI95GW5t9Q--Hz1CW5Au-dArvdnp1K91Xg2Ms/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9jb250/ZXVkby5pbWd1b2wu/Y29tLmJyL2MvcGFy/Y2Vpcm9zL2ZjLzIw/MjEvMTEvMjIvc3Vw/bGEtZGl2dWxnYWNh/by0xNjM3NTUwMjA1/MDMzX3YyXzMwMHgy/MjUuanBn',
-    title: 'supla',
-    genre: 1
-}, {
-    img: 'https://imgs.search.brave.com/0Segl4FI95GW5t9Q--Hz1CW5Au-dArvdnp1K91Xg2Ms/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9jb250/ZXVkby5pbWd1b2wu/Y29tLmJyL2MvcGFy/Y2Vpcm9zL2ZjLzIw/MjEvMTEvMjIvc3Vw/bGEtZGl2dWxnYWNh/by0xNjM3NTUwMjA1/MDMzX3YyXzMwMHgy/MjUuanBn',
-    title: 'supla',
-    genre: 2
-}, {
-    img: 'https://imgs.search.brave.com/0Segl4FI95GW5t9Q--Hz1CW5Au-dArvdnp1K91Xg2Ms/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9jb250/ZXVkby5pbWd1b2wu/Y29tLmJyL2MvcGFy/Y2Vpcm9zL2ZjLzIw/MjEvMTEvMjIvc3Vw/bGEtZGl2dWxnYWNh/by0xNjM3NTUwMjA1/MDMzX3YyXzMwMHgy/MjUuanBn',
-    title: 'supla',
-    genre: 3
-}, {
-    img: 'https://imgs.search.brave.com/0Segl4FI95GW5t9Q--Hz1CW5Au-dArvdnp1K91Xg2Ms/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9jb250/ZXVkby5pbWd1b2wu/Y29tLmJyL2MvcGFy/Y2Vpcm9zL2ZjLzIw/MjEvMTEvMjIvc3Vw/bGEtZGl2dWxnYWNh/by0xNjM3NTUwMjA1/MDMzX3YyXzMwMHgy/MjUuanBn',
-    title: 'supla',
-    genre: 1
-}, {
-    img: 'https://imgs.search.brave.com/0Segl4FI95GW5t9Q--Hz1CW5Au-dArvdnp1K91Xg2Ms/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9jb250/ZXVkby5pbWd1b2wu/Y29tLmJyL2MvcGFy/Y2Vpcm9zL2ZjLzIw/MjEvMTEvMjIvc3Vw/bGEtZGl2dWxnYWNh/by0xNjM3NTUwMjA1/MDMzX3YyXzMwMHgy/MjUuanBn',
-    title: 'supla',
-    genre: 2
-}, {
-    img: 'https://imgs.search.brave.com/0Segl4FI95GW5t9Q--Hz1CW5Au-dArvdnp1K91Xg2Ms/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9jb250/ZXVkby5pbWd1b2wu/Y29tLmJyL2MvcGFy/Y2Vpcm9zL2ZjLzIw/MjEvMTEvMjIvc3Vw/bGEtZGl2dWxnYWNh/by0xNjM3NTUwMjA1/MDMzX3YyXzMwMHgy/MjUuanBn',
-    title: 'supla',
-    genre: 3
-}, {
-    img: 'https://imgs.search.brave.com/0Segl4FI95GW5t9Q--Hz1CW5Au-dArvdnp1K91Xg2Ms/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9jb250/ZXVkby5pbWd1b2wu/Y29tLmJyL2MvcGFy/Y2Vpcm9zL2ZjLzIw/MjEvMTEvMjIvc3Vw/bGEtZGl2dWxnYWNh/by0xNjM3NTUwMjA1/MDMzX3YyXzMwMHgy/MjUuanBn',
-    title: 'supla',
-    genre: 0
-}, {
-    img: 'https://imgs.search.brave.com/0Segl4FI95GW5t9Q--Hz1CW5Au-dArvdnp1K91Xg2Ms/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9jb250/ZXVkby5pbWd1b2wu/Y29tLmJyL2MvcGFy/Y2Vpcm9zL2ZjLzIw/MjEvMTEvMjIvc3Vw/bGEtZGl2dWxnYWNh/by0xNjM3NTUwMjA1/MDMzX3YyXzMwMHgy/MjUuanBn',
-    title: 'supla',
-    genre: 1
-}, {
-    img: 'https://imgs.search.brave.com/0Segl4FI95GW5t9Q--Hz1CW5Au-dArvdnp1K91Xg2Ms/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9jb250/ZXVkby5pbWd1b2wu/Y29tLmJyL2MvcGFy/Y2Vpcm9zL2ZjLzIw/MjEvMTEvMjIvc3Vw/bGEtZGl2dWxnYWNh/by0xNjM3NTUwMjA1/MDMzX3YyXzMwMHgy/MjUuanBn',
-    title: 'supla',
-    genre: 2
-}, {
-    img: 'https://imgs.search.brave.com/0Segl4FI95GW5t9Q--Hz1CW5Au-dArvdnp1K91Xg2Ms/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9jb250/ZXVkby5pbWd1b2wu/Y29tLmJyL2MvcGFy/Y2Vpcm9zL2ZjLzIw/MjEvMTEvMjIvc3Vw/bGEtZGl2dWxnYWNh/by0xNjM3NTUwMjA1/MDMzX3YyXzMwMHgy/MjUuanBn',
-    title: 'supla',
-    genre: 0
-}, {
-    img: 'https://imgs.search.brave.com/0Segl4FI95GW5t9Q--Hz1CW5Au-dArvdnp1K91Xg2Ms/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9jb250/ZXVkby5pbWd1b2wu/Y29tLmJyL2MvcGFy/Y2Vpcm9zL2ZjLzIw/MjEvMTEvMjIvc3Vw/bGEtZGl2dWxnYWNh/by0xNjM3NTUwMjA1/MDMzX3YyXzMwMHgy/MjUuanBn',
-    title: 'supla',
-    genre: 1
-},])
+const currentSelection = ref('Populares')
+
+const popularMovies = ref()
+const topRatedMovies = ref()
+
+onMounted(async () => {
+    await movieStore.getMovieLists();
+    popularMovies.value = movieStore.movies.popular;
+    topRatedMovies.value = movieStore.movies.topRated;
+})
+
 
 </script>
 
 
 <template>
-    <div class="catalog">
-        <div class="generos">
-                <button class="genero" v-for="genero, index in generos" :key="index">
-                     {{ genero }}
-                </button>
-            </div>
-        <div class="movies">
-            <div class="movie" v-for="movie, index of movies" :key="index">
-                <img :src="movie.img" alt="">
-                <p>{{ movie.title }}</p>
-                <p>{{ generos[movie.genre] }}</p>
-            </div>
+    <div class="filter">
+        <button @click="currentSelection = 'Populares'" :class="currentSelection == 'Populares' ? 'selected' : ''">Populares</button>
+        <button @click="currentSelection = 'Melhores'" :class="currentSelection == 'Melhores' ? 'selected' : ''">Melhores Avaliados</button>
+    </div>
+    <div class="catalog" v-if="currentSelection == 'Populares'">
+        <div class="movie" v-for="movie, index of popularMovies" :key="index">
+            <img :src="'https://image.tmdb.org/t/p/original/' + movie.poster_path" alt="">
+            <p>{{ movie.title }}</p>
         </div>
+        
+    </div>
+    <div class="catalog" v-else>
+        <div class="movie" v-for="movie, index of topRatedMovies" :key="index">
+            <img :src="'https://image.tmdb.org/t/p/original/' + movie.poster_path" alt="">
+            <p>{{ movie.title }}</p>
+        </div>
+        
     </div>
 </template>
 
 <style scoped>
-.movies {
+.filter {
+    width: 100%;
     display: flex;
-    flex-wrap: wrap;
-    margin-top: 5%;
-    gap: 2%;
-    row-gap: 20px;
-    align-items: center;
     justify-content: center;
+    gap: 5%;
+   margin-top: 5%;
+}
+
+.selected {
+    background-color: rgb(14, 14, 14);
+    color: white;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+    padding: 0.5%;
+    border-radius: 10px;
+    transition: all 0.1s ease-in-out;
 }
 
 .movie {
-    border: 1px solid;
+    text-align: center;
+    width: 200px;
+    height: 300px;
+}
+
+img {
+    height: 300px;
+    width: 200px;
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.651);
+}
+
+.catalog {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 5%;
+    flex-wrap: wrap;
+    gap: 3.5%;
+    row-gap: 100px;
 }
 </style>

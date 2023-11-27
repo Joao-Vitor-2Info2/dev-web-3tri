@@ -1,0 +1,6 @@
+body {
+    background-image: url('../../public/background.webp');
+    background-color: rgba(29, 0, 0, 0.932);
+    background-blend-mode: color;
+    color: white;
+}

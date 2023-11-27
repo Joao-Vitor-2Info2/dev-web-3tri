@@ -1,6 +1,6 @@
 <script setup>
 
-import MovieHeader from '../components/MovieHeader.vue'
+import MovieHeader from '../components/HeaderComponent.vue'
 import MovieCatalog from '../components/MovieCatalog.vue';
 
 </script>
