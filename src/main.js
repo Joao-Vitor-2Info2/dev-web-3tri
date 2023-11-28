@@ -12,6 +12,8 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
 
+import 'vue-loading-overlay/dist/css/index.css'
+
 library.add(faUserSecret)
 
 import { faEyeSlash, faEye, faLock, faUser ,faCartShopping, faCartArrowDown, faHeart, faChevronLeft, faChevronRight, faFilter, faChevronDown, faChevronUp, faArrowRight, faXmarkCircle, faCaretUp, faCaretDown, faArrowLeft, faStar, faGear, faArrowRightFromBracket, faXmark, faCamera, faEnvelope, faX, faMagnifyingGlass, faBars, faTrash, faPlus, faMinus, faPhone, faCircleExclamation, faCreditCard, faBarcode, faMoneyBillTransfer, faCartPlus} from '@fortawesome/free-solid-svg-icons'

@@ -1,8 +1,5 @@
 <script setup>
 import { RouterLink } from 'vue-router';
-import { ref } from 'vue';
-
-const search = ref('')
 
 </script>
 
@@ -36,7 +33,6 @@ input {
     border-radius: 20px;
     border: 1px solid black;
 }
-
 
 a {
     color: rgb(255, 255, 255);

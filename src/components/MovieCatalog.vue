@@ -2,6 +2,8 @@
 
 import { ref, onMounted } from 'vue'
 import { useMovieStore } from '../stores/movie';
+import MovieComponent from './MovieComponent.vue';
+import Loading from 'vue-loading-overlay'
 
 const movieStore = useMovieStore()
 
@@ -10,12 +12,25 @@ const currentSelection = ref('Populares')
 const popularMovies = ref()
 const topRatedMovies = ref()
 
-onMounted(async () => {
-    await movieStore.getMovieLists();
-    popularMovies.value = movieStore.movies.popular;
-    topRatedMovies.value = movieStore.movies.topRated;
-})
+const currentPage = ref(1)
 
+const isLoading = ref(false)
+
+function changePage(page) {
+    isLoading.value = true
+    currentPage.value = page
+    popularMovies.value = movieStore.movies.popular['page_' + page];
+    topRatedMovies.value = movieStore.movies.topRated['page_' + page];
+    isLoading.value = false
+}
+
+onMounted(async () => {
+    isLoading.value = true
+    await movieStore.getMovieLists();
+    popularMovies.value = movieStore.movies.popular.page_1;
+    topRatedMovies.value = movieStore.movies.topRated.page_1;
+    isLoading.value = false
+})
 
 </script>
 
@@ -26,19 +41,21 @@ onMounted(async () => {
         <button @click="currentSelection = 'Melhores'" :class="currentSelection == 'Melhores' ? 'selected' : ''">Melhores Avaliados</button>
     </div>
     <div class="catalog" v-if="currentSelection == 'Populares'">
-        <div class="movie" v-for="movie, index of popularMovies" :key="index">
-            <img :src="'https://image.tmdb.org/t/p/original/' + movie.poster_path" alt="">
-            <p>{{ movie.title }}</p>
+        <div class="movieContainer" v-for="movie, index of popularMovies" :key="index">
+            <movie-component :title="movie.title" :img_path="movie.poster_path"/>
         </div>
-        
     </div>
     <div class="catalog" v-else>
-        <div class="movie" v-for="movie, index of topRatedMovies" :key="index">
-            <img :src="'https://image.tmdb.org/t/p/original/' + movie.poster_path" alt="">
-            <p>{{ movie.title }}</p>
+        <div class="movieContainer" v-for="movie, index of topRatedMovies" :key="index">
+            <movie-component :title="movie.title" :img_path="movie.poster_path"/>
         </div>
-        
     </div>
+    <div class="pages">
+            <div class="page" @click="changePage(1)">1</div>
+            <div class="page" @click="changePage(2)">2</div>
+            <div class="page" @click="changePage(3)">3</div>
+    </div>
+    <loading v-model:active="isLoading" is-full-page/>
 </template>
 
 <style scoped>
@@ -47,7 +64,20 @@ onMounted(async () => {
     display: flex;
     justify-content: center;
     gap: 5%;
-   margin-top: 5%;
+    margin-top: 5%;
+}
+
+.pages {
+    display: flex;
+    width: 100%;
+    margin-top: 6%;
+    justify-content: center;
+    gap: 3%;
+    font-size: large;
+}
+
+.page {
+    cursor: pointer;
 }
 
 .selected {
