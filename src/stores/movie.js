@@ -38,9 +38,6 @@ export const useMovieStore = defineStore('movie', {
       response = await moviesApi.getTopRatedMovies(3)
       this.movies.topRated.page_2 = response.results
 
-      response = await moviesApi.getPopularSeries()
-      this.series.popular = response.results
-
       response = await moviesApi.getPopularMovies(1)
       this.movies.popular.page_1 = response.results
       response = await moviesApi.getPopularMovies(2)

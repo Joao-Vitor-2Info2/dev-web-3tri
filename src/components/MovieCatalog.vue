@@ -51,9 +51,9 @@ onMounted(async () => {
         </div>
     </div>
     <div class="pages">
-            <div class="page" @click="changePage(1)">1</div>
-            <div class="page" @click="changePage(2)">2</div>
-            <div class="page" @click="changePage(3)">3</div>
+            <div :class="currentPage == 1? 'page currentPage' : 'page'" @click="changePage(1)">1</div>
+            <div :class="currentPage == 2? 'page currentPage' : 'page'" @click="changePage(2)">2</div>
+            <div :class="currentPage == 3? 'page currentPage' : 'page'" @click="changePage(3)">3</div>
     </div>
     <loading v-model:active="isLoading" is-full-page/>
 </template>
@@ -78,6 +78,11 @@ onMounted(async () => {
 
 .page {
     cursor: pointer;
+}
+
+.currentPage {
+    text-decoration: underline;
+    transform: scale(1.2);
 }
 
 .selected {

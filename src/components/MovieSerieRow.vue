@@ -28,7 +28,7 @@ onMounted(async () => {
         title.value = 'Filmes - Melhores Avaliados'
         nameOrTitle.value = 'title'
     } else if (props.listType == 'popularSeries') {
-        list.value = movieStore.series.popular
+        list.value = movieStore.series.popular.page_1
         title.value = 'Séries - Populares'
         nameOrTitle.value = 'name'
     } else if (props.listType == 'popularMovies') {
