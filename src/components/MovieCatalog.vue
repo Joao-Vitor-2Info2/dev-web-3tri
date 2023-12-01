@@ -42,12 +42,12 @@ onMounted(async () => {
     </div>
     <div class="catalog" v-if="currentSelection == 'Populares'">
         <div class="movieContainer" v-for="movie, index of popularMovies" :key="index">
-            <movie-component :title="movie.title" :img_path="movie.poster_path"/>
+            <movie-component :title="movie.title" :img_path="movie.poster_path" :overview="movie.overview" :id="movie.id" :release_date="movie.release_date" :content_type="'movie'"/>
         </div>
     </div>
     <div class="catalog" v-else>
         <div class="movieContainer" v-for="movie, index of topRatedMovies" :key="index">
-            <movie-component :title="movie.title" :img_path="movie.poster_path"/>
+            <movie-component :title="movie.title" :img_path="movie.poster_path" :overview="movie.overview" :id="movie.id" :release_date="movie.release_date" :content_type="'movie'"/>
         </div>
     </div>
     <div class="pages">

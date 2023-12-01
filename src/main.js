@@ -16,9 +16,9 @@ import 'vue-loading-overlay/dist/css/index.css'
 
 library.add(faUserSecret)
 
-import { faEyeSlash, faEye, faLock, faUser ,faCartShopping, faCartArrowDown, faHeart, faChevronLeft, faChevronRight, faFilter, faChevronDown, faChevronUp, faArrowRight, faXmarkCircle, faCaretUp, faCaretDown, faArrowLeft, faStar, faGear, faArrowRightFromBracket, faXmark, faCamera, faEnvelope, faX, faMagnifyingGlass, faBars, faTrash, faPlus, faMinus, faPhone, faCircleExclamation, faCreditCard, faBarcode, faMoneyBillTransfer, faCartPlus} from '@fortawesome/free-solid-svg-icons'
+import { faEyeSlash, faEye, faLock, faUser ,faCartShopping, faCartArrowDown, faHeart, faChevronLeft, faChevronRight, faFilter, faChevronDown, faChevronUp, faArrowRight, faXmarkCircle, faCaretUp, faCaretDown, faArrowLeft, faStar, faGear, faArrowRightFromBracket, faXmark, faCamera, faEnvelope, faX, faMagnifyingGlass, faBars, faTrash, faPlus, faMinus, faPhone, faCircleExclamation, faCreditCard, faBarcode, faMoneyBillTransfer, faCartPlus, faVideo} from '@fortawesome/free-solid-svg-icons'
 
-library.add(faEyeSlash, faEye, faLock, faUser,  faCartShopping, faCartArrowDown, faHeart, faChevronLeft, faChevronRight, faFilter, faChevronDown, faChevronUp, faArrowRight, faXmarkCircle, faCaretUp, faCaretDown, faArrowLeft, faStar, faGear, faArrowRightFromBracket, faXmark, faCamera, faEnvelope, faX, faMagnifyingGlass, faBars, faTrash, faPlus, faMinus, faPhone, faCircleExclamation, faCreditCard, faBarcode, faMoneyBillTransfer, faCartPlus)
+library.add(faEyeSlash, faEye, faLock, faUser,  faCartShopping, faCartArrowDown, faHeart, faChevronLeft, faChevronRight, faFilter, faChevronDown, faChevronUp, faArrowRight, faXmarkCircle, faCaretUp, faCaretDown, faArrowLeft, faStar, faGear, faArrowRightFromBracket, faXmark, faCamera, faEnvelope, faX, faMagnifyingGlass, faBars, faTrash, faPlus, faMinus, faPhone, faCircleExclamation, faCreditCard, faBarcode, faMoneyBillTransfer, faCartPlus, faVideo)
 
 const app = createApp(App)
 

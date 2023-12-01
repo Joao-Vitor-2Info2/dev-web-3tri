@@ -6,6 +6,7 @@ import MovieComponent from './MovieComponent.vue'
 import Loading from 'vue-loading-overlay'
 
 const props = defineProps({
+    contentType: String,
     listType: String,
 });
 
@@ -40,18 +41,18 @@ onMounted(async () => {
 })
 
 function changeMovie(index) {
-        if (currentMovie.value == 1 && index == -1 || currentMovie.value == list.value.length - 2) {
-            currentMovie.value = 1
-        } else {
-            currentMovie.value += index
-        }
+    if (currentMovie.value == 1 && index == -1 || currentMovie.value == list.value.length - 2) {
+        currentMovie.value = 1
+    } else {
+        currentMovie.value += index
+    }
 
-        console.log(currentMovie)
-        divMovies.value[currentMovie.value].scrollIntoView({
-            behavior: 'smooth',
-            block: 'nearest',
-            inline: 'center'
-        });
+    console.log(currentMovie)
+    divMovies.value[currentMovie.value].scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'center'
+    });
 }
 
 </script>
@@ -63,13 +64,14 @@ function changeMovie(index) {
             </font-awesome-icon></div>
         <div class="movieRow">
             <div class="movieContainer" v-for="movie, index of list" :key="index" ref="divMovies">
-                <MovieComponent :title="movie.title" :img_path="movie.poster_path"/>
+                <MovieComponent :title="props.contentType == 'series' ? movie.name : movie.title" :img_path="movie.poster_path" :overview="movie.overview" :release_date="movie.release_date" :id="movie.id" :type="props.listType" :content_type="props.contentType"/>
             </div>
         </div>
-        <div class="nav" @click="changeMovie(1)"> <font-awesome-icon
-                :icon="['fas', 'chevron-right']"></font-awesome-icon> </div>
+        <div class="nav" @click="changeMovie(1)"> 
+            <font-awesome-icon :icon="['fas', 'chevron-right']" />
+        </div>
     </div>
-    <loading v-model:active="isLoading" is-full-page/>
+    <loading v-model:active="isLoading" is-full-page />
 </template>
 
 <style scoped>

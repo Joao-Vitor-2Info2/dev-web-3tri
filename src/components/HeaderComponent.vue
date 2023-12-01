@@ -7,7 +7,7 @@ import { RouterLink } from 'vue-router';
     <header>
         <div class="row1">
             <RouterLink to="/" class="logo">
-                <div>aaaa</div>
+                <font-awesome-icon class="logoImg"  :icon="['fas', 'video']"/>
             </RouterLink>
             <RouterLink to="/filmes">Filmes</RouterLink>
             <RouterLink to="/series">Séries</RouterLink>
@@ -58,6 +58,10 @@ a:hover {
 .logo {
     position: absolute;
     left: 1%;
+}
+
+.logoImg {
+    height: 25px;
 }
 
 .row1 {

@@ -21,6 +21,14 @@ class moviesApi {
         const { data } = await axios.get(`https://api.themoviedb.org/3/tv/top_rated?&language=pt-BR&page=${page}`, config)
         return data
     }
+    async getMovieTrailer(id) {
+        const { data } = await axios.get(`https://api.themoviedb.org/3/movie/${id}/videos?language=pt-BR`, config)
+        return data
+    }
+    async getSeriesTrailer(id) {
+        const { data } = await axios.get(`https://api.themoviedb.org/3/tv/${id}/videos?language=pt-BR`, config)
+        return data
+    }
 }
 
 export default new moviesApi

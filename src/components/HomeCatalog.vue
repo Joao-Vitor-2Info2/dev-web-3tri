@@ -1,4 +1,5 @@
 <script setup>
+import movies from '../api/movies';
 import MovieSerieRow from './MovieSerieRow.vue';
 
 </script>
@@ -17,9 +18,9 @@ import MovieSerieRow from './MovieSerieRow.vue';
         </div>
     </div>
 
-    <movie-serie-row :list-type="'topRatedMovies'"/>
-    <movie-serie-row :list-type="'popularSeries'"/>
-    <movie-serie-row :list-type="'popularMovies'"/>
+    <movie-serie-row :list-type="'topRatedMovies'" :content-type="movie"/>
+    <movie-serie-row :list-type="'popularSeries'" :content-type="series"/>
+    <movie-serie-row :list-type="'popularMovies'" :content-type="movies"/>
 
 </template>
 

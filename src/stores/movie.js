@@ -27,7 +27,13 @@ export const useMovieStore = defineStore('movie', {
         page_2: [],
         page_3: []
       }
-    }
+    },
+    movieTitle: null,
+    movieId: null,
+    movieOverview: null,
+    movieImagePath: null,
+    movieReleaseDate: null,
+    movieTrailerPath: null,
   }),
   actions: {
     async getMovieLists() {
@@ -58,6 +64,16 @@ export const useMovieStore = defineStore('movie', {
       this.series.topRated.page_2 = response.results
       response = await moviesApi.getTopRatedSeries(3)
       this.series.topRated.page_3 = response.results
+    },
+    async getMovieTrailer() {
+      let response = await moviesApi.getMovieTrailer(this.movieId)
+      this.movieTrailerPath = response.results[0].key
+      console.log(this.movieTrailerPath)
+    },
+    async getSeriesTrailer() {
+      let response = await moviesApi.getSeriesTrailer(this.movieId)
+      this.movieTrailerPath = response.results.length > 0 ? response.results[0].key : ''
+      console.log(this.movieTrailerPath)
     }
   }
 })
